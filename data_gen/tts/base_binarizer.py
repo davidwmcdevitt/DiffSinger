@@ -133,7 +133,8 @@ class BaseBinarizer:
         meta_data = list(self.meta_data(prefix))
         for m in meta_data:
             args.append(list(m) + [self.phone_encoder, self.binarization_args])
-        num_workers = int(os.getenv('N_PROC', os.cpu_count() // 3))
+        #num_workers = int(os.getenv('N_PROC', os.cpu_count() // 3))
+        num_workers = int(os.getenv('N_PROC', os.cpu_count()))
         for f_id, (_, item) in enumerate(
                 zip(tqdm(meta_data), chunked_multiprocess_run(self.process_item, args, num_workers=num_workers))):
             if item is None:
