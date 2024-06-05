@@ -1,6 +1,9 @@
 import os
-
+import sys
 os.environ["OMP_NUM_THREADS"] = "1"
+
+os.chdir('/content/DiffSinger')
+sys.path.append('/content/DiffSinger')
 
 import importlib
 from utils.hparams import set_hparams, hparams
