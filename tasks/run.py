@@ -2,6 +2,9 @@ import importlib
 from utils.hparams import set_hparams, hparams
 
 
+os.chdir('/content/DiffSinger')
+sys.path.append('/content/DiffSinger')
+
 def run_task():
     assert hparams['task_cls'] != ''
     pkg = ".".join(hparams["task_cls"].split(".")[:-1])
