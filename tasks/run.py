@@ -1,9 +1,12 @@
-import importlib
-from utils.hparams import set_hparams, hparams
-
+import os
+import sys
 
 os.chdir('/content/DiffSinger')
 sys.path.append('/content/DiffSinger')
+
+import importlib
+from utils.hparams import set_hparams, hparams
+
 
 def run_task():
     assert hparams['task_cls'] != ''
