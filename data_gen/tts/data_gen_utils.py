@@ -169,8 +169,10 @@ def get_pitch(wav_data, mel, hparams):
     f0 = parselmouth.Sound(wav_data, hparams['audio_sample_rate']).to_pitch_ac(
         time_step=time_step / 1000, voicing_threshold=0.6,
         pitch_floor=f0_min, pitch_ceiling=f0_max).selected_array['frequency']
-    lpad = pad_size * 2
-    rpad = len(mel) - len(f0) - lpad
+    #lpad = pad_size * 2
+    lpad = pad_size # DAVID EDIT - reducing the pad size to avoid error where rpad = -1
+    #rpad = len(mel) - len(f0) - lpad
+    rpad = len(mel) - len(f0) - pad_size # DAVID EDIT - reducing the pad size to avoid error where rpad = -1
     f0 = np.pad(f0, [[lpad, rpad]], mode='constant')
     # mel and f0 are extracted by 2 different libraries. we should force them to have the same length.
     # Attention: we find that new version of some libraries could cause ``rpad'' to be a negetive value...
